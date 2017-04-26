@@ -36,8 +36,8 @@
                     <font>
                         <Font size="16.0" />
                     </font></Label>
-                <Label fx:id="label1" layoutX="114.0" layoutY="509.0" prefHeight="40.0" prefWidth="200.0" />
-            <LineChart fx:id="chart" layoutX="809.0" layoutY="154.0" title="X-Werte">
+                <Label fx:id="label1" layoutX="60.0" layoutY="509.0" prefHeight="40.0" prefWidth="254.0" />
+            <LineChart fx:id="chart" layoutX="809.0" layoutY="95.0" prefHeight="400.0" prefWidth="543.0" title="X-Werte">
               <xAxis>
                 <CategoryAxis side="BOTTOM" />
               </xAxis>
@@ -45,7 +45,15 @@
                 <NumberAxis lowerBound="-5.0" side="LEFT" upperBound="5.0" />
               </yAxis>
             </LineChart>
-            <Button fx:id="graph" layoutX="517.0" layoutY="600.0" mnemonicParsing="false" onMouseClicked="#showChart" prefHeight="40.0" prefWidth="92.0" text="Graph" />
+            <Label fx:id="label11" layoutX="60.0" layoutY="561.0" prefHeight="40.0" prefWidth="254.0" />
+            <LineChart fx:id="chartRelation" layoutX="803.0" layoutY="485.0" prefHeight="150.0" prefWidth="555.0" title="Verhältnis">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" />
+              </yAxis>
+            </LineChart>
             </children>
         </Pane>
     </children>
