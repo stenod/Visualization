@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+    <columnConstraints>
+        <ColumnConstraints />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints />
+    </rowConstraints>
+    <children>
+        <Pane prefHeight="700.0" prefWidth="1400.0">
+            <children>
+                <Circle fx:id="circle2" fill="DODGERBLUE" layoutX="215.0" layoutY="265.0" radius="100.0" stroke="BLACK" strokeType="INSIDE" />
+                <Circle fx:id="circle" fill="DODGERBLUE" layoutX="563.0" layoutY="265.0" mouseTransparent="true" radius="${slider.value}" stroke="BLACK" strokeType="INSIDE">
+                    <cursor>
+                        <Cursor fx:constant="NE_RESIZE" />
+                    </cursor>
+                </Circle>
+                <Button layoutX="354.0" layoutY="601.0" mnemonicParsing="false" onMouseClicked="#calculateX" prefHeight="40.0" prefWidth="92.0" text="Absenden" />
+                <Slider fx:id="slider" layoutX="436.0" layoutY="534.0" max="200.0" prefHeight="15.0" prefWidth="254.0" value="50.0" />
+                <Label fx:id="label" contentDisplay="CENTER" layoutX="137.0" layoutY="55.0" prefHeight="40.0" prefWidth="526.0" text="Bitte stellen Sie den rechten Kreis doppelt so groß wie den linken ein." textAlignment="CENTER">
+                    <font>
+                        <Font size="16.0" />
+                    </font></Label>
+                <Label fx:id="label1" layoutX="114.0" layoutY="509.0" prefHeight="40.0" prefWidth="200.0" />
+            <LineChart fx:id="chart" layoutX="809.0" layoutY="154.0" title="X-Werte">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis lowerBound="-5.0" side="LEFT" upperBound="5.0" />
+              </yAxis>
+            </LineChart>
+            <Button fx:id="graph" layoutX="517.0" layoutY="600.0" mnemonicParsing="false" onMouseClicked="#showChart" prefHeight="40.0" prefWidth="92.0" text="Graph" />
+            </children>
+        </Pane>
+    </children>
+</GridPane>
