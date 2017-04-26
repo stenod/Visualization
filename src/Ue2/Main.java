@@ -1,5 +1,10 @@
-package sample;
+package Ue2;
 
+/**
+ * Created by saubaer on 26.04.17.
+ * PackageName: Ue2
+ * ProjektName: Visualization_Jung
+ */
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,8 +15,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        primaryStage.setTitle("Übung 1");
+        Parent root = FXMLLoader.load(getClass().getResource("Ue2.fxml"));
+        primaryStage.setTitle("Übung 2");
         primaryStage.setScene(new Scene(root, 1400, 700));
         primaryStage.show();
     }
@@ -21,3 +26,4 @@ public class Main extends Application {
         launch(args);
     }
 }
+
