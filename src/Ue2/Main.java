@@ -5,6 +5,7 @@ package Ue2;
  * PackageName: Ue2
  * ProjektName: Visualization_Jung
  */
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -17,7 +18,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("Ue2.fxml"));
         primaryStage.setTitle("Übung 2");
-        primaryStage.setScene(new Scene(root, 1400, 700));
+        primaryStage.setScene(new Scene(root, 600, 700));
         primaryStage.show();
     }
 

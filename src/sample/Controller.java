@@ -19,10 +19,10 @@ public class Controller {
     public Label label11;
     public LineChart chartRelation;
 
-    private ArrayList<Double> x = new ArrayList<Double>();
+    private final ArrayList<Double> x = new ArrayList<Double>();
     private int count = 0;
-    private XYChart.Series series = new XYChart.Series();
-    private XYChart.Series series1 = new XYChart.Series();
+    private final XYChart.Series series = new XYChart.Series();
+    private final XYChart.Series series1 = new XYChart.Series();
 
     public void calculateX() {
         double mean = 0;
