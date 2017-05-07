@@ -1,4 +1,4 @@
-package sample;
+package Ue1;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

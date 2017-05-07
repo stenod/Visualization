@@ -92,7 +92,6 @@ public class Controller {
         }
         Random r = new Random();
         if (r.nextInt(2) == 0) {
-            //TODO
             gc.fillRect(x[(int) objectSlider.getValue()], y[(int) objectSlider.getValue()], 20, 20);
             realCount++;
         }

@@ -1,4 +1,4 @@
-package sample;
+package Ue1;
 
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
