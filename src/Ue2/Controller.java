@@ -81,8 +81,8 @@ public class Controller {
 
     private void showCanvas(GraphicsContext gc) {
 
-        double[] x = ThreadLocalRandom.current().doubles(0, canvas.getWidth() - 20).distinct().limit((long) objectSlider.getValue()).toArray();
-        double[] y = ThreadLocalRandom.current().doubles(0, canvas.getHeight() - 20).distinct().limit((long) objectSlider.getValue()).toArray();
+        double[] x = ThreadLocalRandom.current().doubles(0, canvas.getWidth() - 20).distinct().limit((long) objectSlider.getValue() + 1).toArray();
+        double[] y = ThreadLocalRandom.current().doubles(0, canvas.getHeight() - 20).distinct().limit((long) objectSlider.getValue() + 1).toArray();
         //OptionalDouble w = ThreadLocalRandom.current().doubles(0, 20).distinct().limit(1).findFirst();
         //OptionalDouble h = ThreadLocalRandom.current().doubles(0, 20).distinct().limit(1).findFirst();
 
@@ -91,9 +91,9 @@ public class Controller {
             gc.fillOval(x[i], y[i], 20, 20);
         }
         Random r = new Random();
-        if (r.nextInt(1) == 0) {
+        if (r.nextInt(2) == 0) {
             //TODO
-            gc.fillRect(x[20], y[20], 20, 20);
+            gc.fillRect(x[(int) objectSlider.getValue()], y[(int) objectSlider.getValue()], 20, 20);
             realCount++;
         }
 
