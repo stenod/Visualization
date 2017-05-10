@@ -32,8 +32,6 @@ public class Controller {
     public ChoiceBox Select;
 
     private int realCount;
-    private final XYChart.Series series = new XYChart.Series();
-
 
     public void startRound() {
 
@@ -62,6 +60,7 @@ public class Controller {
                             tabPane.getSelectionModel().select(1);
                             okButton.setDisable(false);
                             textField.setDisable(false);
+                            textField.clear();
                         } else {
                             GraphicsContext gc = canvas.getGraphicsContext2D();
                             showCanvas(gc);
@@ -83,6 +82,7 @@ public class Controller {
     }
 
     public void calculateResult() {
+        XYChart.Series series = new XYChart.Series();
 
         int userInput = Integer.parseInt(textField.getText());
         series.getData().add(new XYChart.Data("Anzahl", realCount));
