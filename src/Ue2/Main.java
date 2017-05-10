@@ -14,8 +14,11 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
+
+
     @Override
     public void start(Stage primaryStage) throws Exception{
+
         Parent root = FXMLLoader.load(getClass().getResource("Ue2.fxml"));
         primaryStage.setTitle("Übung 2");
         primaryStage.setScene(new Scene(root, 600, 700));

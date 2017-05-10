@@ -5,11 +5,9 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
-import javafx.scene.control.Button;
-import javafx.scene.control.Slider;
-import javafx.scene.control.TabPane;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
@@ -31,40 +29,59 @@ public class Controller {
     public BarChart chart;
     public Button okButton;
     public Slider objectSlider;
+    public ChoiceBox Select;
 
     private int realCount;
     private final XYChart.Series series = new XYChart.Series();
 
+
     public void startRound() {
 
-        realCount = 0;
+        if (Select.getValue() == null) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Auswahl erforderlich");
+            alert.setHeaderText(null);
+            alert.setContentText("Bitte wählen sie eine Art der Eigenschaften aus!");
+            alert.showAndWait();
+        } else {
+            realCount = 0;
 
-        tabPane.getSelectionModel().select(0);
+            tabPane.getSelectionModel().select(0);
 
-        AnimationTimer timer = new AnimationTimer() {
-            private long lastUpdate = 0;
-            GraphicsContext gc = canvas.getGraphicsContext2D();
-            int count = (int) roundSlider.getValue();
+            AnimationTimer timer = new AnimationTimer() {
+                private long lastUpdate = 0;
+                GraphicsContext gc = canvas.getGraphicsContext2D();
+                int count = (int) roundSlider.getValue();
 
-            @Override
-            public void handle(long now) {
-                if (now - lastUpdate >= timeSlider.getValue() * 1000000) {
-                    gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-                    if (count == 0) {
-                        stop();
-                        tabPane.getSelectionModel().select(1);
-                        okButton.setDisable(false);
-                    } else {
-                        GraphicsContext gc = canvas.getGraphicsContext2D();
-                        showCanvas(gc);
-                        lastUpdate = now;
-                        count -= 1;
+                @Override
+                public void handle(long now) {
+                    if (now - lastUpdate >= timeSlider.getValue() * 1000000) {
+                        gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+                        if (count == 0) {
+                            stop();
+                            tabPane.getSelectionModel().select(1);
+                            okButton.setDisable(false);
+                            textField.setDisable(false);
+                        } else {
+                            GraphicsContext gc = canvas.getGraphicsContext2D();
+                            showCanvas(gc);
+                            lastUpdate = now;
+                            count -= 1;
+                        }
                     }
-                }
 
-            }
-        };
-        timer.start();
+                }
+            };
+            timer.start();
+        }
+    }
+
+    public void showSelection() {
+
+        Select.getItems().clear();
+        Select.getItems().add(0, "Formen");
+        Select.getItems().add(1, "Farben");
+        Select.getItems().add(2, "Beides");
     }
 
     public void calculateResult() {
@@ -76,6 +93,7 @@ public class Controller {
         chart.getData().addAll(series);
 
         okButton.setDisable(true);
+        textField.setDisable(true);
     }
 
 
@@ -86,15 +104,47 @@ public class Controller {
         //OptionalDouble w = ThreadLocalRandom.current().doubles(0, 20).distinct().limit(1).findFirst();
         //OptionalDouble h = ThreadLocalRandom.current().doubles(0, 20).distinct().limit(1).findFirst();
 
-        for (int i = 0; i < objectSlider.getValue() - 1; i++) {
-            gc = canvas.getGraphicsContext2D();
-            gc.fillOval(x[i], y[i], 20, 20);
-        }
-        Random r = new Random();
-        if (r.nextInt(2) == 0) {
-            gc.fillRect(x[(int) objectSlider.getValue()], y[(int) objectSlider.getValue()], 20, 20);
-            realCount++;
-        }
+        if (Select.getValue() == "Formen") {
+            for (int i = 0; i < objectSlider.getValue() - 1; i++) {
+                gc = canvas.getGraphicsContext2D();
+                gc.fillOval(x[i], y[i], 20, 20);
+            }
+            Random r = new Random();
+            if (r.nextInt(2) == 0) {
+                gc.fillRect(x[(int) objectSlider.getValue()], y[(int) objectSlider.getValue()], 20, 20);
+                realCount++;
+            }
+        } else if (Select.getValue() == "Farben") {
+            for (int i = 0; i < objectSlider.getValue() - 1; i++) {
+                gc = canvas.getGraphicsContext2D();
+                gc.setFill(Color.BLUE);
+                gc.fillOval(x[i], y[i], 20, 20);
+            }
+            Random r = new Random();
+            if (r.nextInt(2) == 0) {
+                gc.setFill(Color.AQUAMARINE);
+                gc.fillOval(x[(int) objectSlider.getValue()], y[(int) objectSlider.getValue()], 20, 20);
+                realCount++;
+            }
+        } else if (Select.getValue() == "Beides") {
+            Random r = new Random();
 
+            for (int i = 0; i < objectSlider.getValue() - 1; i++) {
+                Color color;
+                if (r.nextInt(2) == 0) {
+                    color = Color.BLUE;
+                } else {
+                    color = Color.AQUAMARINE;
+                }
+                gc = canvas.getGraphicsContext2D();
+                gc.setFill(color);
+                gc.fillOval(x[i], y[i], 20, 20);
+            }
+            if (r.nextInt(2) == 0) {
+                gc.setFill(Color.AQUAMARINE);
+                gc.fillRect(x[(int) objectSlider.getValue()], y[(int) objectSlider.getValue()], 20, 20);
+                realCount++;
+            }
+        }
     }
 }
