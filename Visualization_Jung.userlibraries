@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eclipse-userlibraries>
+  <library name="jquery">
+    <archive path="/Users/saubaer/Library/Preferences/IntelliJIdea2017.1/javascript/extLibs/http_ajax.googleapis.com_ajax_libs_jquery_1.12.4_jquery.js" />
+  </library>
+  <library name="PRACHbbJ3RAh">
+    <archive path="/Users/saubaer/Library/Preferences/IntelliJIdea2017.1/javascript/extLibs/__freesurveycreator.com_embeds_PRACHbbJ3RAh.js" />
+  </library>
+  <library name="scala-sdk-2.11.8">
+    <archive path="/Users/saubaer/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.11.8.jar" />
+    <archive path="/Users/saubaer/.ivy2/cache/org.scala-lang/scala-reflect/jars/scala-reflect-2.11.8.jar" />
+    <archive path="/Users/saubaer/.ivy2/cache/org.scala-lang/scala-library/srcs/scala-library-2.11.8-sources.jar" />
+    <archive path="/Users/saubaer/.ivy2/cache/org.scala-lang/scala-reflect/srcs/scala-reflect-2.11.8-sources.jar" />
+  </library>
+  <library name="scala-sdk-2.12.2">
+    <archive path="/Users/saubaer/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.12.2.jar" />
+    <archive path="/Users/saubaer/.ivy2/cache/org.scala-lang/scala-reflect/jars/scala-reflect-2.12.2.jar" />
+    <archive path="/Users/saubaer/.ivy2/cache/org.scala-lang/scala-library/srcs/scala-library-2.12.2-sources.jar" />
+    <archive path="/Users/saubaer/.ivy2/cache/org.scala-lang/scala-reflect/srcs/scala-reflect-2.12.2-sources.jar" />
+  </library>
+  <library name="Struts 2-2.3.20.1">
+    <archive path="/Users/saubaer/Documents/FZI/M2G/Development/Struts2_Example/lib/asm.jar" />
+    <archive path="/Users/saubaer/Documents/FZI/M2G/Development/Struts2_Example/lib/commons-fileupload.jar" />
+    <archive path="/Users/saubaer/Documents/FZI/M2G/Development/Struts2_Example/lib/asm-commons.jar" />
+    <archive path="/Users/saubaer/Documents/FZI/M2G/Development/Struts2_Example/lib/asm-tree.jar" />
+    <archive path="/Users/saubaer/Documents/FZI/M2G/Development/Struts2_Example/lib/commons-io.jar" />
+    <archive path="/Users/saubaer/Documents/FZI/M2G/Development/Struts2_Example/lib/ognl.jar" />
+    <archive path="/Users/saubaer/Documents/FZI/M2G/Development/Struts2_Example/lib/commons-lang.jar" />
+    <archive path="/Users/saubaer/Documents/FZI/M2G/Development/Struts2_Example/lib/xwork-core.jar" />
+    <archive path="/Users/saubaer/Documents/FZI/M2G/Development/Struts2_Example/lib/javassist.jar" />
+    <archive path="/Users/saubaer/Documents/FZI/M2G/Development/Struts2_Example/lib/struts2-core.jar" />
+    <archive path="/Users/saubaer/Documents/FZI/M2G/Development/Struts2_Example/lib/freemarker.jar" />
+  </library>
+</eclipse-userlibraries>
+

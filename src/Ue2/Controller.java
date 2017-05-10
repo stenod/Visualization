@@ -79,9 +79,7 @@ public class Controller {
     public void showSelection() {
 
         Select.getItems().clear();
-        Select.getItems().add(0, "Formen");
-        Select.getItems().add(1, "Farben");
-        Select.getItems().add(2, "Beides");
+        Select.getItems().addAll("Formen", "Farben", "Beides");
     }
 
     public void calculateResult() {
