@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.Double?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Polygon?>
+
+<AnchorPane prefHeight="600.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Ue3.Controller">
+   <children>
+      <ListView fx:id="CarListRight" layoutX="716.0" layoutY="14.0" prefHeight="200.0" prefWidth="200.0">
+         <padding>
+            <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+         </padding>
+      </ListView>
+      <Label fx:id="topicNameRight" layoutX="716.0" layoutY="229.0" prefHeight="39.0" prefWidth="200.0" text="Name des gewählten Autos" />
+      <Pane layoutX="356.0" layoutY="147.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <Line endX="100.0" layoutX="100.0" layoutY="100.0" startX="-100.0" />
+            <Line endY="100.0" layoutX="100.0" layoutY="100.0" startY="-100.0" />
+            <Line endX="100.0" layoutX="100.0" layoutY="100.0" rotate="45.0" startX="-100.0" />
+            <Line endY="100.0" layoutX="100.0" layoutY="100.0" rotate="45.0" startY="-100.0" />
+            <Polygon fx:id="polygonRight" fill="DODGERBLUE" layoutX="100.0" layoutY="100.0" stroke="BLACK" strokeType="INSIDE" visible="false">
+              <points>
+                <Double fx:value="-50.0" />
+                <Double fx:value="40.0" />
+                <Double fx:value="50.0" />
+                <Double fx:value="40.0" />
+                <Double fx:value="0.0" />
+                <Double fx:value="-60.0" />
+              </points>
+            </Polygon>
+            <Label fx:id="mpgLabel" layoutX="-3.0" layoutY="12.0" text="mpg" />
+            <Label fx:id="GewichtLabel" layoutX="175.0" layoutY="20.0" text="Gewicht" />
+            <Label layoutX="-3.0" layoutY="171.0" text="Label" />
+            <Label fx:id="HubraumLabel" layoutX="172.0" layoutY="178.0" text="Hubraum" />
+            <Polygon fx:id="polygonLeft" fill="DODGERBLUE" layoutX="100.0" layoutY="100.0" stroke="BLACK" strokeType="INSIDE" visible="false">
+               <points>
+                  <Double fx:value="-50.0" />
+                  <Double fx:value="40.0" />
+                  <Double fx:value="50.0" />
+                  <Double fx:value="40.0" />
+                  <Double fx:value="0.0" />
+                  <Double fx:value="-60.0" />
+               </points>
+            </Polygon>
+         </children>
+      </Pane>
+      <Label fx:id="PSLabel" layoutX="559.0" layoutY="239.0" text="PS" />
+      <Label fx:id="JahrLabel" layoutX="312.0" layoutY="239.0" text="Jahr" />
+      <Label fx:id="ZylinderLabel" layoutX="431.0" layoutY="355.0" text="Zylinder" />
+      <Label fx:id="BeschleunigungLabel" layoutX="407.0" layoutY="130.0" text="Beschleunigung" />
+      <ListView fx:id="CarListLeft" layoutX="14.0" layoutY="14.0" prefHeight="200.0" prefWidth="200.0">
+         <padding>
+            <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+         </padding>
+      </ListView>
+      <Label fx:id="topicNameLeft" layoutX="14.0" layoutY="220.0" prefHeight="39.0" prefWidth="200.0" text="Name des gewählten Autos" />
+      <ComboBox fx:id="originChoiceBoxLeft" layoutX="39.0" layoutY="269.0" prefWidth="150.0" onAction="#showCarsByOriginLeft" />
+      <ComboBox fx:id="originChoiceBoxRight" layoutX="741.0" layoutY="269.0" prefWidth="150.0" onAction="#showCarsByOriginRight" />
+   </children>
+</AnchorPane>

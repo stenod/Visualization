@@ -97,6 +97,17 @@ public class Controller {
 
     private void showCanvas(GraphicsContext gc) {
 
+        /*double[] x = new double[(int) objectSlider.getValue() + 1];
+        double[] y = new double[(int) objectSlider.getValue() + 1];
+        int j = 0;
+        int k = 0;
+        for (int i = 0; i < objectSlider.getValue() + 1; i ++) {
+            j += canvas.getWidth()/objectSlider.getValue();
+            k += canvas.getHeight()/objectSlider.getValue();
+            x[i] = ThreadLocalRandom.current().nextDouble(j - (canvas.getWidth()/objectSlider.getValue()), j);
+            y[i] = ThreadLocalRandom.current().nextDouble(k - (canvas.getHeight()/objectSlider.getValue()), k);
+        }*/
+
         double[] x = ThreadLocalRandom.current().doubles(0, canvas.getWidth() - 20).distinct().limit((long) objectSlider.getValue() + 1).toArray();
         double[] y = ThreadLocalRandom.current().doubles(0, canvas.getHeight() - 20).distinct().limit((long) objectSlider.getValue() + 1).toArray();
         //OptionalDouble w = ThreadLocalRandom.current().doubles(0, 20).distinct().limit(1).findFirst();
