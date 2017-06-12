@@ -2,15 +2,14 @@ package Ue3;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.Objects;
 
@@ -36,6 +35,13 @@ public class Controller {
     public Label topicNameRight;
     public ComboBox originChoiceBoxLeft;
     public ComboBox originChoiceBoxRight;
+    public RadioButton MeanWertLeft;
+    public RadioButton ModalWertLeft;
+    public RadioButton MeanWertRight;
+    public RadioButton ModalWertRight;
+
+    final ToggleGroup groupRight = new ToggleGroup();
+    final ToggleGroup groupLeft = new ToggleGroup();
 
 
     private Double zylinder = 0.0;
@@ -46,9 +52,19 @@ public class Controller {
     private Double mpg = 0.0;
     private Double jahr = 0.0;
 
+    DecimalFormat df = new DecimalFormat("#.##");
+
     private String[][] carList = new String[407][11];
 
     public void initialize() {
+        MeanWertLeft.setToggleGroup(groupLeft);
+        ModalWertLeft.setToggleGroup(groupLeft);
+
+        MeanWertRight.setToggleGroup(groupRight);
+        ModalWertRight.setToggleGroup(groupRight);
+
+        MeanWertLeft.setSelected(true);
+        MeanWertRight.setSelected(true);
 
         ObservableList<String> items = FXCollections.observableArrayList();
         ObservableList<String> origins = FXCollections.observableArrayList();
@@ -81,7 +97,7 @@ public class Controller {
                 (ov, old_val, new_val) -> {
                     topicNameRight.setText((String) new_val);
 
-                    Double[] data = filterCars(carList, "name", (String) new_val);
+                    Double[] data = filterCars(carList, "name", (String) new_val, groupRight.getSelectedToggle());
 
                     showPolygon(data, Color.color(1.0, 0.3, 0.8, 0.5), polygonRight);
 
@@ -92,7 +108,7 @@ public class Controller {
                 (ov, old_val, new_val) -> {
                     topicNameLeft.setText((String) new_val);
 
-                    Double[] data = filterCars(carList, "name", (String) new_val);
+                    Double[] data = filterCars(carList, "name", (String) new_val, groupLeft.getSelectedToggle());
 
                     showPolygon(data, Color.color(0.4549, 0.5804, 1, 0.502), polygonLeft);
 
@@ -113,7 +129,7 @@ public class Controller {
 
         Object origin = originChoiceBoxRight.getSelectionModel().getSelectedItem();
 
-        Double[] data = filterCars(carList, "origin", (String) origin);
+        Double[] data = filterCars(carList, "origin", (String) origin, groupRight.getSelectedToggle());
 
         showPolygon(data, Color.color(1.0, 0.3, 0.8, 0.5), polygonRight);
     }
@@ -123,7 +139,7 @@ public class Controller {
 
         Object origin = originChoiceBoxLeft.getSelectionModel().getSelectedItem();
 
-        Double[] data = filterCars(carList, "origin", (String) origin);
+        Double[] data = filterCars(carList, "origin", (String) origin, groupLeft.getSelectedToggle());
 
         showPolygon(data, Color.color(0.4549, 0.5804, 1, 0.502), polygonLeft);
     }
@@ -146,12 +162,12 @@ public class Controller {
                 0.0, data[0]);
     }
 
-    private Double[] filterCars(String[][] carList, String filterType, String filterValue) {
+    private Double[] filterCars(String[][] carList, String filterBy, String filterValue, Toggle filterType) {
 
         Double[] data = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
         int count = 0;
 
-        switch (filterType) {
+        switch (filterBy) {
             case "origin":
                 for (String[] car : carList) {
                     if (filterValue.equals(car[9])) {
@@ -173,9 +189,18 @@ public class Controller {
                         count++;
                     }
                 }
-                for (int i = 0; i < data.length; i++) {
-                    data[i] = data[i] / count;
+
+                if (filterType.getToggleGroup().getSelectedToggle() == MeanWertRight || filterType.getToggleGroup().getSelectedToggle() == MeanWertLeft) {
+                    for (int i = 0; i < data.length; i++) {
+                        data[i] = Double.valueOf((String.valueOf((data[i] / count)).substring(0,4)));
+                    }
                 }
+                else {
+                    for (int i = 0; i < data.length; i++) {
+                        data[i] = mode(data);
+                    }
+                }
+
                 ZylinderLabel.setText("Zylinder: " + data[0]);
                 HubraumLabel.setText("Hubraum: " + data[1]);
                 PSLabel.setText("PS: " + data[2]);
@@ -216,5 +241,21 @@ public class Controller {
 
         }
         return data;
+    }
+
+    private static double mode(Double[] array) {
+        double mode = array[0];
+        int maxCount = 0;
+        for (Double value : array) {
+            int count = 1;
+            for (Double anArray : array) {
+                if (Objects.equals(anArray, value)) count++;
+                if (count > maxCount) {
+                    mode = value;
+                    maxCount = count;
+                }
+            }
+        }
+        return mode;
     }
 }

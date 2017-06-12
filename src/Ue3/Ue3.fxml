@@ -5,6 +5,7 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Line?>
@@ -60,7 +61,11 @@
          </padding>
       </ListView>
       <Label fx:id="topicNameLeft" layoutX="14.0" layoutY="220.0" prefHeight="39.0" prefWidth="200.0" text="Name des gewählten Autos" />
-      <ComboBox fx:id="originChoiceBoxLeft" layoutX="39.0" layoutY="269.0" prefWidth="150.0" onAction="#showCarsByOriginLeft" />
-      <ComboBox fx:id="originChoiceBoxRight" layoutX="741.0" layoutY="269.0" prefWidth="150.0" onAction="#showCarsByOriginRight" />
+      <ComboBox fx:id="originChoiceBoxLeft" layoutX="39.0" layoutY="269.0" onAction="#showCarsByOriginLeft" prefWidth="150.0" />
+      <ComboBox fx:id="originChoiceBoxRight" layoutX="741.0" layoutY="269.0" onAction="#showCarsByOriginRight" prefWidth="150.0" />
+      <RadioButton fx:id="MeanWertLeft" layoutX="64.0" layoutY="309.0" mnemonicParsing="false" text="MeanWert" />
+      <RadioButton fx:id="ModalWertLeft" layoutX="64.0" layoutY="338.0" mnemonicParsing="false" text="ModalWert" />
+      <RadioButton fx:id="MeanWertRight" layoutX="766.0" layoutY="309.0" mnemonicParsing="false" text="MeanWert" />
+      <RadioButton fx:id="ModalWertRight" layoutX="766.0" layoutY="338.0" mnemonicParsing="false" text="Modalwert" />
    </children>
 </AnchorPane>
