@@ -18,7 +18,7 @@
             <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
          </padding>
       </ListView>
-      <Label fx:id="topicNameRight" layoutX="716.0" layoutY="229.0" prefHeight="39.0" prefWidth="200.0" text="Name des gewählten Autos" />
+      <Label fx:id="topicNameRight" layoutX="716.0" layoutY="220.0" prefHeight="39.0" prefWidth="200.0" text="Name des gewählten Autos" />
       <Pane layoutX="356.0" layoutY="147.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0">
          <children>
             <Line endX="100.0" layoutX="100.0" layoutY="100.0" startX="-100.0" />
@@ -51,8 +51,8 @@
             </Polygon>
          </children>
       </Pane>
-      <Label fx:id="PSLabel" layoutX="559.0" layoutY="239.0" text="PS" />
-      <Label fx:id="JahrLabel" layoutX="312.0" layoutY="239.0" text="Jahr" />
+      <Label fx:id="PSLabel" layoutX="568.0" layoutY="239.0" text="PS" />
+      <Label fx:id="JahrLabel" layoutX="303.0" layoutY="239.0" text="Jahr" />
       <Label fx:id="ZylinderLabel" layoutX="431.0" layoutY="355.0" text="Zylinder" />
       <Label fx:id="BeschleunigungLabel" layoutX="407.0" layoutY="130.0" text="Beschleunigung" />
       <ListView fx:id="CarListLeft" layoutX="14.0" layoutY="14.0" prefHeight="200.0" prefWidth="200.0">
@@ -61,11 +61,19 @@
          </padding>
       </ListView>
       <Label fx:id="topicNameLeft" layoutX="14.0" layoutY="220.0" prefHeight="39.0" prefWidth="200.0" text="Name des gewählten Autos" />
-      <ComboBox fx:id="originChoiceBoxLeft" layoutX="39.0" layoutY="269.0" onAction="#showCarsByOriginLeft" prefWidth="150.0" />
-      <ComboBox fx:id="originChoiceBoxRight" layoutX="741.0" layoutY="269.0" onAction="#showCarsByOriginRight" prefWidth="150.0" />
-      <RadioButton fx:id="MeanWertLeft" layoutX="64.0" layoutY="309.0" mnemonicParsing="false" text="MeanWert" />
-      <RadioButton fx:id="ModalWertLeft" layoutX="64.0" layoutY="338.0" mnemonicParsing="false" text="ModalWert" />
-      <RadioButton fx:id="MeanWertRight" layoutX="766.0" layoutY="309.0" mnemonicParsing="false" text="MeanWert" />
-      <RadioButton fx:id="ModalWertRight" layoutX="766.0" layoutY="338.0" mnemonicParsing="false" text="Modalwert" />
+      <ComboBox fx:id="originChoiceBoxLeft" layoutX="39.0" layoutY="323.0" onAction="#showCarsByOriginLeft" prefWidth="150.0" />
+      <ComboBox fx:id="originChoiceBoxRight" layoutX="741.0" layoutY="321.0" onAction="#showCarsByOriginRight" prefWidth="150.0" />
+      <RadioButton fx:id="MeanWertLeft" layoutX="64.0" layoutY="363.0" mnemonicParsing="false" text="MeanWert" />
+      <RadioButton fx:id="ModalWertLeft" disable="true" layoutX="64.0" layoutY="392.0" mnemonicParsing="false" text="ModalWert" />
+      <RadioButton fx:id="MeanWertRight" layoutX="766.0" layoutY="361.0" mnemonicParsing="false" text="MeanWert" />
+      <RadioButton fx:id="ModalWertRight" disable="true" layoutX="766.0" layoutY="390.0" mnemonicParsing="false" text="Modalwert" />
+      <ComboBox fx:id="yearChoiceBoxLeft" layoutX="39.0" layoutY="457.0" onInputMethodTextChanged="#showCarsByYearLeft" prefWidth="150.0" />
+      <ComboBox fx:id="yearChoiceBoxRight" layoutX="741.0" layoutY="455.0" onInputMethodTextChanged="#showCarsByYearRight" prefWidth="150.0" />
+      <Label layoutX="86.0" layoutY="292.0" prefHeight="17.0" prefWidth="56.0" text="Filtertyp" />
+      <Label layoutX="788.0" layoutY="292.0" prefHeight="17.0" prefWidth="56.0" text="Filtertyp" />
+      <Label layoutX="197.0" layoutY="328.0" prefHeight="17.0" prefWidth="42.0" text="Origin" />
+      <Label layoutX="695.0" layoutY="326.0" prefHeight="17.0" prefWidth="42.0" text="Origin" />
+      <Label layoutX="197.0" layoutY="462.0" prefHeight="17.0" prefWidth="42.0" text="Year" />
+      <Label layoutX="700.0" layoutY="460.0" prefHeight="17.0" prefWidth="33.0" text="Year" />
    </children>
 </AnchorPane>

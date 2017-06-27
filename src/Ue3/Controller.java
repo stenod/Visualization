@@ -42,6 +42,8 @@ public class Controller {
 
     final ToggleGroup groupRight = new ToggleGroup();
     final ToggleGroup groupLeft = new ToggleGroup();
+    public ComboBox yearChoiceBoxLeft;
+    public ComboBox yearChoiceBoxRight;
 
 
     private Double zylinder = 0.0;
@@ -68,6 +70,8 @@ public class Controller {
 
         ObservableList<String> items = FXCollections.observableArrayList();
         ObservableList<String> origins = FXCollections.observableArrayList();
+        ObservableList<String> years = FXCollections.observableArrayList();
+
 
         String csvFile = "/Users/saubaer/Documents/Visualization_Jung/data/cars.csv";
         String line = "";
@@ -101,6 +105,9 @@ public class Controller {
 
                     showPolygon(data, Color.color(1.0, 0.3, 0.8, 0.5), polygonRight);
 
+                    originChoiceBoxRight.getSelectionModel().clearSelection();
+                    yearChoiceBoxRight.getSelectionModel().clearSelection();
+
                 });
 
 
@@ -112,13 +119,17 @@ public class Controller {
 
                     showPolygon(data, Color.color(0.4549, 0.5804, 1, 0.502), polygonLeft);
 
+                    originChoiceBoxLeft.getSelectionModel().clearSelection();
+                    yearChoiceBoxLeft.getSelectionModel().clearSelection();
                 });
 
         origins.addAll("European", "American", "Japanese", "NA");
         originChoiceBoxLeft.setItems(origins);
         originChoiceBoxRight.setItems(origins);
 
-
+        years.addAll("70","71","72","73","74","75","76","77","78","79","80","81","82");
+        yearChoiceBoxLeft.setItems(years);
+        yearChoiceBoxRight.setItems(years);
         /*PolarItem.setFill(Color.ALICEBLUE);
         PolarItem.setStroke(Color.BLUE);
         PolarItem.setContent("M0, 0 L 100, 100 L"
@@ -132,6 +143,9 @@ public class Controller {
         Double[] data = filterCars(carList, "origin", (String) origin, groupRight.getSelectedToggle());
 
         showPolygon(data, Color.color(1.0, 0.3, 0.8, 0.5), polygonRight);
+
+        yearChoiceBoxRight.getSelectionModel().clearSelection();
+        CarListRight.getSelectionModel().clearSelection();
     }
 
 
@@ -142,6 +156,33 @@ public class Controller {
         Double[] data = filterCars(carList, "origin", (String) origin, groupLeft.getSelectedToggle());
 
         showPolygon(data, Color.color(0.4549, 0.5804, 1, 0.502), polygonLeft);
+
+        yearChoiceBoxLeft.getSelectionModel().clearSelection();
+        CarListLeft.getSelectionModel().clearSelection();
+    }
+
+    public void showCarsByYearRight() {
+
+        Object year = yearChoiceBoxRight.getSelectionModel().getSelectedItem();
+
+        Double[] data = filterCars(carList, "year", (String) year, groupRight.getSelectedToggle());
+
+        showPolygon(data, Color.color(1.0, 0.3, 0.8, 0.5), polygonRight);
+
+        originChoiceBoxRight.getSelectionModel().clearSelection();
+        CarListRight.getSelectionModel().clearSelection();
+    }
+
+    public void showCarsByYearLeft() {
+
+        Object year = yearChoiceBoxLeft.getSelectionModel().getSelectedItem();
+
+        Double[] data = filterCars(carList, "year", (String) year, groupLeft.getSelectedToggle());
+
+        showPolygon(data, Color.color(0.4549, 0.5804, 1, 0.502), polygonLeft);
+
+        originChoiceBoxLeft.getSelectionModel().clearSelection();
+        CarListLeft.getSelectionModel().clearSelection();
     }
 
 
@@ -192,10 +233,9 @@ public class Controller {
 
                 if (filterType.getToggleGroup().getSelectedToggle() == MeanWertRight || filterType.getToggleGroup().getSelectedToggle() == MeanWertLeft) {
                     for (int i = 0; i < data.length; i++) {
-                        data[i] = Double.valueOf((String.valueOf((data[i] / count)).substring(0,4)));
+                        data[i] = Double.valueOf((String.valueOf((data[i] / count)).substring(0, 4)));
                     }
-                }
-                else {
+                } else {
                     for (int i = 0; i < data.length; i++) {
                         data[i] = mode(data);
                     }
@@ -238,7 +278,47 @@ public class Controller {
                         data[6] = Double.valueOf(car[8]) * 1.21;
                     }
                 }
+                break;
+            case "year":
+                for (String[] car : carList) {
+                    if (filterValue.equals(car[8])) {
 
+                        if (Objects.equals(car[5], "NA")) {
+                            car[5] = String.valueOf(0);
+                        }
+                        if (Objects.equals(car[2], "NA")) {
+                            car[2] = String.valueOf(0);
+                        }
+
+                        data[0] += Double.valueOf(car[3]) * 12.5;
+                        data[1] += Double.valueOf(car[4]) / 6.07;
+                        data[2] += Double.valueOf(car[5]) / 2.3;
+                        data[3] += Double.valueOf(car[6]) / 68.54;
+                        data[4] += Double.valueOf(car[7]) * 4.03;
+                        data[5] += Double.valueOf(car[2]) * 2.14;
+                        data[6] += Double.valueOf(car[8]) * 1.21;
+                        count++;
+                    }
+                }
+
+                if (filterType.getToggleGroup().getSelectedToggle() == MeanWertRight || filterType.getToggleGroup().getSelectedToggle() == MeanWertLeft) {
+                    for (int i = 0; i < data.length; i++) {
+                        data[i] = Double.valueOf((String.valueOf((data[i] / count)).substring(0, 4)));
+                    }
+                } else {
+                    for (int i = 0; i < data.length; i++) {
+                        data[i] = mode(data);
+                    }
+                }
+
+                ZylinderLabel.setText("Zylinder: " + data[0]);
+                HubraumLabel.setText("Hubraum: " + data[1]);
+                PSLabel.setText("PS: " + data[2]);
+                GewichtLabel.setText("Gewicht: " + data[3]);
+                BeschleunigungLabel.setText("Beschleunigung: " + data[4]);
+                mpgLabel.setText("mpg: " + data[5]);
+                JahrLabel.setText("Jahr:" + data[6]);
+                break;
         }
         return data;
     }
