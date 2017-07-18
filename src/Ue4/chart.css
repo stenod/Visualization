@@ -1,0 +1,27 @@
+.onHover{
+    -fx-background-color: ORANGE;
+}
+
+.greenYellow {
+    -fx-background-color: greenyellow;
+}
+
+.darkGreen {
+    -fx-background-color: darkgreen;
+}
+
+.yellow {
+    -fx-background-color: yellow;
+}
+
+.orange {
+    -fx-background-color: orange;
+}
+
+.red {
+    -fx-background-color: red;
+}
+
+.size1 {
+    -fx-background-radius: 150%;
+}
